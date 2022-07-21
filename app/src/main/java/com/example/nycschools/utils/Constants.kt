@@ -9,4 +9,5 @@ class Constants {
         const val SCHOOL_NAME_MESSAGE = "school_name"
         const val ERROR_MESSAGE = "No SAT data found for the "
     }
+
 }

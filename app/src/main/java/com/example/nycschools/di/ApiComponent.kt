@@ -1,5 +1,6 @@
-package com.example.nycschools.module
+package com.example.nycschools.di
 
+import android.app.Activity
 import com.example.nycschools.DetailActivity
 import com.example.nycschools.MainActivity
 import dagger.Component

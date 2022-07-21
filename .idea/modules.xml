@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/19860811-KunalShinde-NYCSchools.iml" filepath="$PROJECT_DIR$/.idea/modules/19860811-KunalShinde-NYCSchools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NYCSchools.iml" filepath="$PROJECT_DIR$/.idea/modules/NYCSchools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NYCSchools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NYCSchools.app.iml" />
     </modules>
   </component>
 </project>

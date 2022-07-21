@@ -1,7 +1,7 @@
 package com.example.nycschools
 
-import com.example.nycschools.module.DaggerAppComponent
-import com.example.nycschools.module.ApiModule
+import com.example.nycschools.di.DaggerAppComponent
+import com.example.nycschools.di.ApiModule
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -38,11 +38,12 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     lateinit var nycViewModel: NYCSchoolViewModel
-    lateinit var repository: Repository
     var showIndex by mutableStateOf(-1)
 
     @Inject
     lateinit var apiService: ApiService
+    @Inject
+    lateinit var repository: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +71,6 @@ class MainActivity : ComponentActivity() {
             .apiModule(ApiModule(Constants.BASE_URL))
             .build()
         appComponent.inject(this)
-        repository = Repository(apiService)
         nycViewModel = ViewModelProvider(
             this,
             NYCSchoolFactory(repository)

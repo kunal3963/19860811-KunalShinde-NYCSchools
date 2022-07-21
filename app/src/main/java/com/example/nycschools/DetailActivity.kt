@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import com.example.nycschools.data.SchoolInfo
+import com.example.nycschools.di.ApiModule
+import com.example.nycschools.di.DaggerAppComponent
 import com.example.nycschools.network.ApiService
 import com.example.nycschools.repository.Repository
 import com.example.nycschools.ui.theme.NYCSchoolsTheme
@@ -27,10 +29,13 @@ import com.example.nycschools.utils.Constants.Companion.ERROR_MESSAGE
 import com.example.nycschools.utils.NetworkUtils
 import com.example.nycschools.viewModels.NYCSchoolFactory
 import com.example.nycschools.viewModels.NYCSchoolViewModel
+import javax.inject.Inject
 
 class DetailActivity : ComponentActivity() {
     lateinit var nycViewModel: NYCSchoolViewModel
+    @Inject
     lateinit var repository: Repository
+    @Inject
     lateinit var apiService: ApiService
     lateinit var schoolName: String
     lateinit var dbn: String
@@ -54,8 +59,10 @@ class DetailActivity : ComponentActivity() {
 
     @Composable
     fun init() {
-        apiService = ApiService.getInstance()
-        repository = Repository(apiService)
+        val appComponent = DaggerAppComponent.builder()
+            .apiModule(ApiModule(Constants.BASE_URL))
+            .build()
+        appComponent.inject(this)
         nycViewModel = ViewModelProvider(
             this,
             NYCSchoolFactory(repository)
